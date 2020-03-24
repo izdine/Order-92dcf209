@@ -51,10 +51,10 @@
     <table>
         <thead>
             <th>Titel</th>
-         <th><a href="<?php if (isset($_GET['sort'])) {
+         <th><a href="<?php if (isset($_GET['seriessort'])) {
            echo "index.php";
          } else {
-           echo "index.php?sort=1";
+           echo "index.php?seriessort=1";
          }
           ?>">Rating</a></th>
 
@@ -62,9 +62,8 @@
         </thead>
         <tbody>
             <?php
-            if (isset($_GET['sort'])) {
+            if (isset($_GET['seriessort'])) {
            $rows = select('SELECT * FROM series ORDER BY rating DESC');
-
             }else {
                 $rows = select('SELECT * FROM series');
               }
@@ -87,12 +86,20 @@
     <table>
         <thead>
             <th>Titel</th>
-            <th>Duur</th>
+            <th> <a href="<?php if (isset($_GET['Filmssort'])) {
+              echo "index.php";
+            } else {
+              echo "index.php?Filmssort=1";
+            } ?>"> Duur</a></th>
             <th></th>
         </thead>
         <tbody>
             <?php
+              if (isset($_GET['Filmssort'])) {
+            $rows = select('SELECT * FROM films ORDER BY Duur DESC');
+          }else {
             $rows = select('SELECT * FROM films');
+          }
             foreach ($rows as $row) {
                 echo <<<EOT
                             <tr>
