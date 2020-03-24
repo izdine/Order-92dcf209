@@ -7,7 +7,7 @@
 <body>
     <a href="index.php">Terug</a>
     <?php
-      function select($quary){
+    $result;
     $host = 'localhost';
     $db   = 'netland';
     $user = 'root';
@@ -26,15 +26,22 @@
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
-        $query = 'SELECT * FROM films WHERE ID =' . $_GET['ID']  ;
+        $query = 'SELECT * FROM films WHERE ID =' . $_GET['id']  ;
         $result = $pdo->query($query)->fetch();
-        }
     ?>
     <table>
         <tbody>
             <tr>
                 <td><strong>Datum van uitkomst</strong></td>
                 <td><?php echo $result['Uitkomst_Datum'] ?></td>
+            </tr>
+            <tr>
+              <td><strong>Land_van_Uitkomst</strong></td>
+              <td><?php echo $result['Land_van_Uitkomst'] ?></td>
+            </tr>
+            <tr>
+              <td><strong>Omschrijving</strong></td>
+              <td><?php echo $result['Omschrijving'] ?></td>
             </tr>
         </tbody>
     </table>

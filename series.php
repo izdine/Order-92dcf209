@@ -7,7 +7,7 @@
 <body>
   <a href="index.php">Terug</a>
     <?php
-    $result;
+          $result;
           $host = 'localhost';
           $db   = 'netland';
           $user = 'root';
@@ -27,12 +27,11 @@
             }
 $query = 'SELECT * FROM series Where id  =' . $_GET['id'];
       $result = $pdo->query($query)->fetch();
-
 ?>
 <h1><?php echo $result['title']?> - <?php echo $result['rating'] ?></h1>
 <table>
   <tbody>
-    <tr>
+    <tr> 
       <td><strong>Awards?</strong></td>
       <td><?php if ($result['has_won_awards']) {
         echo "YES";

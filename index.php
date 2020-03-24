@@ -13,7 +13,7 @@
           $pass = '';
           $charset = 'utf8mb4';
 
- 
+
             $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -42,6 +42,7 @@
 
             return $formatResult;
         }
+        $order = 'SELECT title, rating *FROM series ORDER BY title DESC, rating DESC =' . $_GET['rating'];
     ?>
     <h1>Welkom op het Netland beheerders paneel</h1>
 
@@ -50,12 +51,23 @@
     <table>
         <thead>
             <th>Titel</th>
-            <th>Rating</th>
+         <th><a href="<?php if (isset($_GET['sort'])) {
+           echo "index.php";
+         } else {
+           echo "index.php?sort=1";
+         }
+          ?>">Rating</a></th>
+
             <th></th>
         </thead>
         <tbody>
             <?php
+            if (isset($_GET['sort'])) {
+           $rows = select('SELECT * FROM series ORDER BY rating DESC');
+
+            }else {
                 $rows = select('SELECT * FROM series');
+              }
                 foreach ($rows as $row) {
                     echo <<<EOT
                         <tr>
